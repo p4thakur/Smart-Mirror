@@ -17,6 +17,7 @@ from uber_rides.client import UberRidesClient
 from uber_rides.session import OAuth2Credential
 from uber_rides.session import Session
 import houndify
+import webbrowser
 
 
 from nlg import NLG
@@ -333,13 +334,15 @@ class Bot(object):
             print id
             #print thumb
             videou = "https://www.youtube.com/embed/" + id + "?autoplay=1&controls=1"
+            video2="https://www.youtube.com/watch?v="+ id
             #print videou
            
             youtube_action = "Sure. Here's a video of %s." % video
             body = {'url': videou, 'channel': ch_title, 'thumb':thumb, 'titles':title}
             requests.post("http://localhost:8080/video", data=json.dumps(body))
             self.speech.synthesize_text(youtube_action)
-            time.sleep(60)
+            webbrowser.open(video2)
+            time.sleep(30)
             
            
            
